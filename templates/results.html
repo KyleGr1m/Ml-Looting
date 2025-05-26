@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accounts</title>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <h2>Gmail & Passwords</h2>
+  <table border="1">
+    <tr>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Actions</th>
+      <th>Status</th>
+    </tr>
+    {% for acc in accounts %}
+    <tr>
+      <td><span class="email">{{ acc.email }}</span></td>
+      <td><span class="password">{{ acc.password }}</span></td>
+      <td>
+        <button onclick="copyToClipboard('{{ acc.email }}')">Copy Gmail</button>
+        <button onclick="copyToClipboard('{{ acc.password }}')">Copy Password</button>
+        <button onclick="showInfo(this, '{{ acc.full }}')">Show Info</button>
+      </td>
+      <td><input type="checkbox" onchange="markChecked(this)"> Checked</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
